@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>User Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <script>
+    if (localStorage.getItem('role') !== 'user') {
+      alert("Kamu bukan user biasa!");
+      window.location.href = "index.html";
+    }
+  </script>
+  <div class="login-container">
+    <h1>Welcome User!</h1>
+    <h2 id="userName"></h2>
+    <button onclick="logout()">Logout</button>
+  </div>
+  <script>
+    document.getElementById('userName').textContent = localStorage.getItem('username');
+    function logout() {
+      localStorage.clear();
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

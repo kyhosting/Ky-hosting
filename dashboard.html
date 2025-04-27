@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <script>
+    if (localStorage.getItem('role') !== 'admin') {
+      alert("Kamu tidak punya akses ke Dashboard!");
+      window.location.href = "index.html";
+    }
+  </script>
+  <aside class="sidebar">
+    <h3>Admin Panel</h3>
+    <button id="toggleDarkMode" class="dark-mode-btn">Toggle Dark Mode</button>
+    <nav>
+      <ul>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#profile">Profile</a></li>
+        <li><a href="#users">Users</a></li>
+        <li><a href="#" onclick="logout()">Logout</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <main class="main-content">
+    <section id="dashboard">
+      <h1>Dashboard Admin</h1>
+      <canvas id="userChart" height="100"></canvas>
+    </section>
+    <section id="profile">
+      <h1>Profile Admin</h1>
+      <img id="profileImage" src="default-profile.png" alt="Profile" style="width:150px; border-radius: 50%;">
+      <input type="file" id="uploadImage">
+      <h2 id="profileName"></h2>
+    </section>
+    <section id="users">
+      <h1>Manage Users</h1>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>Email</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="userTableBody"></tbody>
+        </table>
+      </div>
+      <h2>Tambah User</h2>
+      <form id="addUserForm">
+        <input type="text" id="newName" placeholder="Nama" required>
+        <input type="email" id="newEmail" placeholder="Email" required>
+        <select id="newStatus" required>
+          <option value="">Pilih Status</option>
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+        <button type="submit">Tambah User</button>
+      </form>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
